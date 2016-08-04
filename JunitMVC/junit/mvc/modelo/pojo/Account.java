@@ -1,7 +1,7 @@
 package junit.mvc.modelo.pojo;
 @Entity
 @Table(name="account")
-public class Account {
+public class Account implements java.io.Serializable{
 	 private Integer Id;
 	    private String Numero;
 	    private String Nombre;
