@@ -5,7 +5,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="account")
-public class Account {
+public class Account implements java.io.Serializable{
+	@javax.persistence.Id
 	 private Integer Id;
 	    private String Numero;
 	    private String Nombre;
