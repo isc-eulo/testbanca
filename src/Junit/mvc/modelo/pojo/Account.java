@@ -1,4 +1,8 @@
-package junit.mvc.modelo.pojo;
+package Junit.mvc.modelo.pojo;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @Entity
 @Table(name="account")
 public class Account {

@@ -1,4 +1,4 @@
-package junit.mvc.modelo;
+package Junit.mvc.modelo;
 
 
 

@@ -1,4 +1,4 @@
-package junit.mvc.modelo.DAO;
+package Junit.mvc.modelo.DAO;
 
 
 
@@ -11,13 +11,15 @@ import javax.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import sistema.telemetria.DAO.GenericDAO;
-import sistema.telemetria.util.HibernateHelper;
 
-public abstract class GenericDAO <T, id extends Serializable> implements GenericDAO<T, id>{
+import Junit.mvc.modelo.GenericDAO;
+import Junit.mvc.util.HibernateHelper;
+
+
+public abstract class GenericDAOImp <T, id extends Serializable> implements GenericDAO<T, id>{
 	private Class<T> claseDePersistencia;
 
-	public Generic() {
+	public GenericDAOImp() {
 		this.claseDePersistencia = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
 	}
