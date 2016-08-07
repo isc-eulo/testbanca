@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<form data-dojo-type="dijit/form/Form"> 
+    <!--tabla contenedor      cols=columnas-->
+    <div data-dojo-type="dojox/layout/TableContainer" data-dojo-props="cols: 1">
+        <input data-dojo-type="dijit/form/TextBox" title="Nombre" name="nombre"/>
+        <input data-dojo-type="dijit/form/ValidationTextBox" title="Apellidos" 
+               name="apellidos"
+               data-dojo-props="required:true"/>
+        <input data-dojo-type="dijit/form/ValidationTextBox" title="Correo"
+               name="email"
+               data-dojo-props="validator:dojox.validate.isEmailAddress,
+               invalidMessage:'correo no valido'"/>
+
+        <input data-dojo-type="dijit/form/ValidationTextBox" title="Edad"
+               name="edad"
+               data-dojo-props="validator:dojox.validate.isInRange,
+               constraints:{min:15,max:55},
+               invalidMessage:'Tu edad'"/>
+
+
+        <input data-dojo-type="dijit/form/ValidationTextBox" title="Hexa"
+               name="hexa"
+               data-dojo-props="regExp:'^abc.*',
+               invalidMessage:'Tu Empieza con abc'"/>
+
+
+    </div> 
+
+</form>

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import javax.persistence.PersistenceException;
 
 import org.hibernate.Session;
@@ -18,7 +19,7 @@ import Junit.mvc.util.HibernateHelper;
 
 public abstract class GenericDAOImp <T, id extends Serializable> implements GenericDAO<T, id>{
 	private Class<T> claseDePersistencia;
-
+	 private static final Logger logger = Logger.getLogger(GenericDAOImp.class);
 	public GenericDAOImp() {
 		this.claseDePersistencia = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
@@ -47,7 +48,8 @@ public abstract class GenericDAOImp <T, id extends Serializable> implements Gene
 					+ claseDePersistencia.getSimpleName() + "\n");
 			
 		}	catch(Exception e){
-			System.out.println(e.toString());	
+			logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(), e);
+            throw e;	
 		} finally {
 			
 			session.close();
@@ -85,9 +87,8 @@ public abstract class GenericDAOImp <T, id extends Serializable> implements Gene
 		} catch (PersistenceException e) {
 			transaction.rollback();
 			ex = false;
-			System.out.println("fatal error al insertar en: "
-					+ claseDePersistencia.getSimpleName() + "\n" + "--codigo--"
-					+ e);
+			logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(), e);
+            throw e;
 		} finally {
 			session.close();
 			sessionFactory.close();
@@ -124,9 +125,8 @@ public abstract class GenericDAOImp <T, id extends Serializable> implements Gene
 		} catch (PersistenceException e) {
 			transaction.rollback();
 			ex = false;
-			System.out.println("fatal error al salvar en: "
-					+ claseDePersistencia.getSimpleName() + "\n" + "--codigo--"
-					+ e);
+			logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(), e);
+            throw e;
 		} finally {
 
 			session.close();
@@ -190,9 +190,8 @@ public abstract class GenericDAOImp <T, id extends Serializable> implements Gene
 		} catch (PersistenceException e) {
 			transaction.rollback();
 			ex = false;
-			System.out.println("fatal error al borrar en: "
-					+ claseDePersistencia.getSimpleName() + "\n" + "--codigo--"
-					+ e);
+			logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(), e);
+            throw e;
 		} finally {
 
 			session.close();
